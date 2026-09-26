@@ -1,0 +1,1326 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "title": "standard public schema",
+    "version": "14.5"
+  },
+  "host": "sfbavdgpadbmivdgnayu.supabase.co:443",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json",
+    "application/vnd.pgrst.object+json;nulls=stripped",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "produces": [
+    "application/json",
+    "application/vnd.pgrst.object+json;nulls=stripped",
+    "application/vnd.pgrst.object+json",
+    "text/csv"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "produces": [
+          "application/openapi+json",
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "OpenAPI description (this document)",
+        "tags": [
+          "Introspection"
+        ]
+      }
+    },
+    "/approval_logs": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.expense_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.approver_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.action"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.comments"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.created_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/approval_logs"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "approval_logs"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.approval_logs"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "approval_logs"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.expense_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.approver_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.action"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.comments"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.created_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "approval_logs"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.expense_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.approver_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.action"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.comments"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.approval_logs.created_at"
+          },
+          {
+            "$ref": "#/parameters/body.approval_logs"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "approval_logs"
+        ]
+      }
+    },
+    "/profiles": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.profiles.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.role"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.created_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/profiles"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "profiles"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.profiles"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "profiles"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.profiles.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.role"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.created_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "profiles"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.profiles.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.full_name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.role"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.profiles.created_at"
+          },
+          {
+            "$ref": "#/parameters/body.profiles"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "profiles"
+        ]
+      }
+    },
+    "/departments": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.departments.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.manager_id"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/departments"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "departments"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.departments"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "departments"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.departments.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.manager_id"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "departments"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.departments.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.name"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.created_at"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.departments.manager_id"
+          },
+          {
+            "$ref": "#/parameters/body.departments"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "departments"
+        ]
+      }
+    },
+    "/expenses": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.expenses.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.receipt_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.created_at"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/expenses"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "expenses"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.expenses"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "expenses"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.expenses.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.receipt_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.created_at"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "expenses"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.expenses.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.user_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.amount"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.description"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.status"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.receipt_url"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.expenses.created_at"
+          },
+          {
+            "$ref": "#/parameters/body.expenses"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "expenses"
+        ]
+      }
+    },
+    "/budgets": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.budgets.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.fiscal_period"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_allocated"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_spent"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/order"
+          },
+          {
+            "$ref": "#/parameters/range"
+          },
+          {
+            "$ref": "#/parameters/rangeUnit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/preferCount"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/budgets"
+              },
+              "type": "array"
+            }
+          },
+          "206": {
+            "description": "Partial Content"
+          }
+        },
+        "tags": [
+          "budgets"
+        ]
+      },
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/body.budgets"
+          },
+          {
+            "$ref": "#/parameters/select"
+          },
+          {
+            "$ref": "#/parameters/preferPost"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        },
+        "tags": [
+          "budgets"
+        ]
+      },
+      "delete": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.budgets.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.fiscal_period"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_allocated"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_spent"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "budgets"
+        ]
+      },
+      "patch": {
+        "parameters": [
+          {
+            "$ref": "#/parameters/rowFilter.budgets.id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.department_id"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.fiscal_period"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_allocated"
+          },
+          {
+            "$ref": "#/parameters/rowFilter.budgets.total_spent"
+          },
+          {
+            "$ref": "#/parameters/body.budgets"
+          },
+          {
+            "$ref": "#/parameters/preferReturn"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        },
+        "tags": [
+          "budgets"
+        ]
+      }
+    },
+    "/rpc/rls_auto_enable": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "args",
+            "required": true,
+            "schema": {
+              "type": "object"
+            }
+          },
+          {
+            "$ref": "#/parameters/preferParams"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/vnd.pgrst.object+json;nulls=stripped",
+          "application/vnd.pgrst.object+json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "(rpc) rls_auto_enable"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "approval_logs": {
+      "required": [
+        "id",
+        "action"
+      ],
+      "properties": {
+        "id": {
+          "default": "gen_random_uuid()",
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "expense_id": {
+          "description": "Note:\nThis is a Foreign Key to `expenses.id`.<fk table='expenses' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "approver_id": {
+          "description": "Note:\nThis is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "action": {
+          "format": "text",
+          "type": "string"
+        },
+        "comments": {
+          "format": "text",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "profiles": {
+      "required": [
+        "id",
+        "full_name"
+      ],
+      "properties": {
+        "id": {
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "full_name": {
+          "format": "text",
+          "type": "string"
+        },
+        "role": {
+          "default": "employee",
+          "enum": [
+            "employee",
+            "manager",
+            "finance"
+          ],
+          "format": "public.user_role",
+          "type": "string"
+        },
+        "department_id": {
+          "description": "Note:\nThis is a Foreign Key to `departments.id`.<fk table='departments' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "departments": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "id": {
+          "default": "gen_random_uuid()",
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "name": {
+          "format": "text",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        },
+        "manager_id": {
+          "description": "Note:\nThis is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "expenses": {
+      "required": [
+        "id",
+        "amount",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "default": "gen_random_uuid()",
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "user_id": {
+          "description": "Note:\nThis is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "department_id": {
+          "description": "Note:\nThis is a Foreign Key to `departments.id`.<fk table='departments' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "amount": {
+          "format": "numeric",
+          "type": "number"
+        },
+        "description": {
+          "format": "text",
+          "type": "string"
+        },
+        "status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "manager_approved",
+            "finance_approved",
+            "rejected",
+            "paid"
+          ],
+          "format": "public.expense_status",
+          "type": "string"
+        },
+        "receipt_url": {
+          "format": "text",
+          "type": "string"
+        },
+        "created_at": {
+          "default": "now()",
+          "format": "timestamp with time zone",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "budgets": {
+      "required": [
+        "id",
+        "fiscal_period",
+        "total_allocated",
+        "total_spent"
+      ],
+      "properties": {
+        "id": {
+          "default": "gen_random_uuid()",
+          "description": "Note:\nThis is a Primary Key.<pk/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "department_id": {
+          "description": "Note:\nThis is a Foreign Key to `departments.id`.<fk table='departments' column='id'/>",
+          "format": "uuid",
+          "type": "string"
+        },
+        "fiscal_period": {
+          "format": "text",
+          "type": "string"
+        },
+        "total_allocated": {
+          "default": 0,
+          "format": "numeric",
+          "type": "number"
+        },
+        "total_spent": {
+          "default": 0,
+          "format": "numeric",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "parameters": {
+    "preferParams": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "in": "header",
+      "type": "string"
+    },
+    "preferReturn": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "return=representation",
+        "return=minimal",
+        "return=none"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "preferCount": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "count=none"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "preferPost": {
+      "name": "Prefer",
+      "description": "Preference",
+      "required": false,
+      "enum": [
+        "return=representation",
+        "return=minimal",
+        "return=none",
+        "resolution=ignore-duplicates",
+        "resolution=merge-duplicates"
+      ],
+      "in": "header",
+      "type": "string"
+    },
+    "select": {
+      "name": "select",
+      "description": "Filtering Columns",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "on_conflict": {
+      "name": "on_conflict",
+      "description": "On Conflict",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "order": {
+      "name": "order",
+      "description": "Ordering",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "range": {
+      "name": "Range",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "header",
+      "type": "string"
+    },
+    "rangeUnit": {
+      "name": "Range-Unit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "default": "items",
+      "in": "header",
+      "type": "string"
+    },
+    "offset": {
+      "name": "offset",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "limit": {
+      "name": "limit",
+      "description": "Limiting and Pagination",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.approval_logs": {
+      "name": "approval_logs",
+      "description": "approval_logs",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/approval_logs"
+      }
+    },
+    "rowFilter.approval_logs.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.approval_logs.expense_id": {
+      "name": "expense_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.approval_logs.approver_id": {
+      "name": "approver_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.approval_logs.action": {
+      "name": "action",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.approval_logs.comments": {
+      "name": "comments",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.approval_logs.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.profiles": {
+      "name": "profiles",
+      "description": "profiles",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/profiles"
+      }
+    },
+    "rowFilter.profiles.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.profiles.full_name": {
+      "name": "full_name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.profiles.role": {
+      "name": "role",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.profiles.department_id": {
+      "name": "department_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.profiles.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.departments": {
+      "name": "departments",
+      "description": "departments",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/departments"
+      }
+    },
+    "rowFilter.departments.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.departments.name": {
+      "name": "name",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.departments.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.departments.manager_id": {
+      "name": "manager_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.expenses": {
+      "name": "expenses",
+      "description": "expenses",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/expenses"
+      }
+    },
+    "rowFilter.expenses.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.user_id": {
+      "name": "user_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.department_id": {
+      "name": "department_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.amount": {
+      "name": "amount",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.description": {
+      "name": "description",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.status": {
+      "name": "status",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.receipt_url": {
+      "name": "receipt_url",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.expenses.created_at": {
+      "name": "created_at",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "body.budgets": {
+      "name": "budgets",
+      "description": "budgets",
+      "required": false,
+      "in": "body",
+      "schema": {
+        "$ref": "#/definitions/budgets"
+      }
+    },
+    "rowFilter.budgets.id": {
+      "name": "id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.budgets.department_id": {
+      "name": "department_id",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.budgets.fiscal_period": {
+      "name": "fiscal_period",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.budgets.total_allocated": {
+      "name": "total_allocated",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    },
+    "rowFilter.budgets.total_spent": {
+      "name": "total_spent",
+      "required": false,
+      "in": "query",
+      "type": "string"
+    }
+  },
+  "externalDocs": {
+    "description": "PostgREST Documentation",
+    "url": "https://postgrest.org/en/v14/references/api.html"
+  }
+}

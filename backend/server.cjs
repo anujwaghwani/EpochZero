@@ -77,17 +77,41 @@ app.get('/api/departments', async (req, res) => {
 app.get('/api/expenses', requireAuth, async (req, res) => {
   try {
     console.log(`[EXPENSES] Fetching for role: ${req.profile.role}`);
-    let query = supabase.from('expenses').select('*, profiles(full_name), approval_logs(comments)').order('created_at', { ascending: false });
+    let query = supabase.from('expenses').select('*, profiles(full_name), approval_logs(comments, action)').order('created_at', { ascending: false });
     
     if (req.profile.role === 'employee') {
       query = query.eq('user_id', req.user.id);
     } else if (req.profile.role === 'manager') {
-      query = query.eq('department_id', req.profile.department_id).eq('status', 'pending');
+      query = query.eq('department_id', req.profile.department_id || '00000000-0000-0000-0000-000000000000').eq('status', 'pending');
     }
     
     const { data, error } = await query;
     if (error) throw error;
-    res.json(data);
+
+    // Smart Auditing for Managers
+    let enrichedData = data;
+    if (req.profile.role === 'manager' || req.profile.role === 'finance') {
+      enrichedData = await Promise.all(data.map(async (exp) => {
+        let flags = [];
+        if (exp.amount > 500) flags.push('high_value');
+        
+        // Duplicate check (last 7 days, same user, same amount)
+        const sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+        const { data: pastExps } = await supabase.from('expenses')
+          .select('id')
+          .eq('user_id', exp.user_id)
+          .eq('amount', exp.amount)
+          .gte('created_at', sevenDaysAgo.toISOString())
+          .neq('id', exp.id)
+          .limit(1);
+          
+        if (pastExps && pastExps.length > 0) flags.push('duplicate_warning');
+        return { ...exp, flags };
+      }));
+    }
+    
+    res.json(enrichedData);
   } catch (err) {
     console.error('[EXPENSES GET ERROR]', err.message);
     res.status(500).json({ error: err.message });
@@ -96,7 +120,7 @@ app.get('/api/expenses', requireAuth, async (req, res) => {
 
 app.post('/api/expenses', requireAuth, async (req, res) => {
   try {
-    const { amount, description } = req.body;
+    const { amount, description, receipt_url } = req.body;
     console.log(`[EXPENSES] Creating new expense for $${amount}`);
     
     const { data, error } = await supabase.from('expenses').insert({
@@ -104,6 +128,7 @@ app.post('/api/expenses', requireAuth, async (req, res) => {
       department_id: req.profile.department_id,
       amount: parseFloat(amount),
       description,
+      receipt_url: receipt_url || null,
       status: 'pending'
     }).select();
     
@@ -151,6 +176,34 @@ app.patch('/api/expenses/:id/approve', requireAuth, async (req, res) => {
     res.json({ message: 'Expense successfully approved and budget updated.' });
   } catch (err) {
     console.error('[APPROVE ERROR]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.patch('/api/expenses/:id/reject', requireAuth, async (req, res) => {
+  try {
+    if (req.profile.role !== 'manager' && req.profile.role !== 'finance') {
+      return res.status(403).json({ error: 'Unauthorized' });
+    }
+
+    const expenseId = req.params.id;
+    const { reason } = req.body;
+    console.log(`[REJECT] Rejecting expense: ${expenseId}`);
+    
+    // Update expense
+    await supabase.from('expenses').update({ status: 'rejected' }).eq('id', expenseId);
+    
+    // Log
+    await supabase.from('approval_logs').insert({
+      expense_id: expenseId,
+      approver_id: req.user.id,
+      action: 'rejected',
+      comments: reason || 'No reason provided'
+    });
+
+    res.json({ message: 'Expense rejected.' });
+  } catch (err) {
+    console.error('[REJECT ERROR]', err.message);
     res.status(500).json({ error: err.message });
   }
 });

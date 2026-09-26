@@ -137,7 +137,7 @@ export default function Auth({ onAuthSuccess }) {
               {['employee', 'manager', 'admin'].map((r) => (
                 <button 
                   key={r}
-                  onClick={() => handleDemoLogin(r)} 
+                  onClick={() => handleDemoLogin(r === 'admin' ? 'finance' : r)} 
                   disabled={loading} 
                   type="button" 
                   className="py-2.5 px-2 bg-white/80 hover:bg-white text-slate-700 hover:text-indigo-600 text-xs font-bold uppercase tracking-wider rounded-xl border border-slate-200/50 shadow-sm hover:shadow-md transition-all duration-200 disabled:opacity-50"
@@ -174,7 +174,7 @@ export default function Auth({ onAuthSuccess }) {
                     >
                       <option value="employee">Employee</option>
                       <option value="manager">Manager</option>
-                      <option value="admin">Admin</option>
+                      <option value="finance">Admin</option>
                     </select>
                   </div>
                   <div>
